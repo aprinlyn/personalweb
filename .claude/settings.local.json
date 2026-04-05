@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//private/tmp/**)",
+      "Bash(rm -rf astro-temp)",
+      "Bash(npm create:*)",
+      "Bash(cp:*)",
+      "Bash(npm run:*)"
+    ]
+  }
+}

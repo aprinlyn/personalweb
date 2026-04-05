@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+/* Tell Tailwind v4 to use .dark class instead of media query */
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Slate-steel primary palette */
+  --color-primary-50: #f0f4f8;
+  --color-primary-100: #d9e2ec;
+  --color-primary-200: #bcccdc;
+  --color-primary-300: #9fb3c8;
+  --color-primary-400: #829ab1;
+  --color-primary-500: #627d98;
+  --color-primary-600: #486581;
+  --color-primary-700: #334e68;
+  --color-primary-800: #243b53;
+  --color-primary-900: #102a43;
+  /* Muted teal accent */
+  --color-accent-300: #7dd3c4;
+  --color-accent-400: #4fd1c5;
+  --color-accent-500: #38b2ac;
+  --color-accent-600: #2c9f94;
+}
+
+/* ── Dark mode ── */
+.dark { color-scheme: dark; }
+
+/* ── Animations ── */
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -50px) scale(1.1); }
+  50% { transform: translate(-20px, 20px) scale(0.9); }
+  75% { transform: translate(20px, 40px) scale(1.05); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-blob { animation: blob 7s infinite; }
+.animate-blob-delay-2 { animation: blob 7s infinite 2s; }
+.animate-blob-delay-4 { animation: blob 7s infinite 4s; }
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-slide-up { animation: slide-up 0.6s ease-out both; }
+.animate-slide-up-delay-1 { animation: slide-up 0.6s ease-out 0.1s both; }
+.animate-slide-up-delay-2 { animation: slide-up 0.6s ease-out 0.2s both; }
+.animate-slide-up-delay-3 { animation: slide-up 0.6s ease-out 0.3s both; }
+.animate-fade-in { animation: fade-in 0.8s ease-out both; }
+
+/* ── Gradient text — slate to teal ── */
+.gradient-text {
+  background: linear-gradient(135deg, #627d98, #38b2ac);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glass card ── */
+.glass-light {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.dark .glass-light {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ── Noise grain overlay ── */
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.3;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #627d98;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #486581;
+}
+.dark ::-webkit-scrollbar-thumb { background: #334e68; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #486581; }
+
+/* ── Card hover lift ── */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -8px rgba(16, 42, 67, 0.12);
+}
+.dark .hover-lift:hover {
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Animated underline ── */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #38b2ac;
+  transition: width 0.3s ease;
+  border-radius: 1px;
+}
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* ── Dotted grid background ── */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(98, 125, 152, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.dark .dot-grid {
+  background-image: radial-gradient(circle, rgba(98, 125, 152, 0.08) 1px, transparent 1px);
+}
+
+/* ── Prose styles for blog posts ── */
+.prose h1 { font-size: 2.25rem; font-weight: 700; margin-bottom: 1rem; }
+.prose h2 { font-size: 1.875rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 0.75rem; color: #243b53; }
+.dark .prose h2 { color: #bcccdc; }
+.prose h3 { font-size: 1.5rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.prose p { margin-bottom: 1.25rem; line-height: 1.8; }
+.prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+.prose ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
+.prose li { margin-bottom: 0.375rem; line-height: 1.75; }
+.prose code {
+  background: rgba(98, 125, 152, 0.1);
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  border: 1px solid rgba(98, 125, 152, 0.15);
+}
+.dark .prose code {
+  background: rgba(98, 125, 152, 0.15);
+  border-color: rgba(98, 125, 152, 0.2);
+}
+.prose pre {
+  background: #102a43;
+  color: #d9e2ec;
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  border: 1px solid #243b53;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+.prose pre code { background: transparent; padding: 0; border: none; }
+.prose a {
+  color: #38b2ac;
+  text-decoration: underline;
+  text-decoration-color: rgba(56, 178, 172, 0.3);
+  transition: text-decoration-color 0.3s;
+}
+.prose a:hover { text-decoration-color: #38b2ac; }
+.prose blockquote {
+  border-left: 3px solid #38b2ac;
+  padding-left: 1.25rem;
+  font-style: italic;
+  color: #627d98;
+}
+.dark .prose blockquote { color: #829ab1; }
+.prose table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+.prose th { text-align: left; padding: 0.75rem; border-bottom: 2px solid rgba(98, 125, 152, 0.3); font-weight: 600; }
+.prose td { padding: 0.75rem; border-bottom: 1px solid rgba(98, 125, 152, 0.1); }
+.prose hr { border: none; height: 1px; background: linear-gradient(90deg, transparent, #627d98, transparent); margin: 2.5rem 0; }

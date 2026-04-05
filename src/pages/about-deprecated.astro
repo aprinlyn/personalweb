@@ -1,0 +1,174 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const skillCategories = [
+  {
+    title: 'Languages',
+    icon: '{ }',
+    skills: ['JavaScript', 'TypeScript', 'Python', 'Java', 'SQL'],
+  },
+  {
+    title: 'Testing & QA',
+    icon: '////',
+    skills: ['Playwright', 'Cypress', 'Selenium', 'Jest', 'Pytest', 'REST Assured', 'Postman'],
+  },
+  {
+    title: 'Frameworks',
+    icon: '</>',
+    skills: ['React', 'Node.js', 'Astro', 'Tailwind CSS', 'Express'],
+  },
+  {
+    title: 'CI/CD & DevOps',
+    icon: '>>',
+    skills: ['GitHub Actions', 'Jenkins', 'Docker', 'Git', 'Linux'],
+  },
+  {
+    title: 'Tools & Platforms',
+    icon: '#_',
+    skills: ['VS Code', 'Jira', 'Confluence', 'Grafana', 'AWS'],
+  },
+];
+
+const approaches = [
+  {
+    title: 'Quality First',
+    description: 'Shifting testing left — catching bugs early through code reviews, unit tests, and continuous integration.',
+    num: '01',
+  },
+  {
+    title: 'Automation Mindset',
+    description: 'If it can be automated, it should be. Building test frameworks that are maintainable, scalable, and actually useful.',
+    num: '02',
+  },
+  {
+    title: 'Developer Experience',
+    description: 'Great testing tools should be a joy to use. Clear APIs, helpful error messages, and smooth CI integration.',
+    num: '03',
+  },
+  {
+    title: 'Continuous Learning',
+    description: 'The testing landscape evolves fast. Staying current with new tools, frameworks, and methodologies.',
+    num: '04',
+  },
+];
+---
+
+<BaseLayout title="About — ApriLiyantoko" description="Learn about my background, skills, and approach to quality engineering.">
+  <!-- Hero -->
+  <section class="relative overflow-hidden border-b border-gray-200/50 dark:border-gray-800/50">
+    <div class="pointer-events-none absolute inset-0">
+      <div class="animate-blob absolute -left-20 top-0 h-60 w-60 rounded-full bg-primary-300/10 blur-3xl dark:bg-primary-600/5"></div>
+      <div class="animate-blob-delay-2 absolute -right-20 bottom-0 h-60 w-60 rounded-full bg-accent-500/10 blur-3xl dark:bg-accent-500/5"></div>
+    </div>
+    <div class="relative mx-auto max-w-4xl px-6 py-20 md:py-28">
+      <p class="mb-4 font-mono text-sm text-accent-600 dark:text-accent-400">~/about</p>
+      <h1 class="mb-6 text-4xl font-extrabold text-gray-900 dark:text-white md:text-5xl">
+        The person behind<br />
+        <span class="gradient-text">the code</span>
+      </h1>
+    </div>
+  </section>
+
+  <!-- Bio -->
+  <section class="mx-auto max-w-4xl px-6 py-16">
+    <div class="grid items-start gap-12 md:grid-cols-5">
+      <div class="flex justify-center md:col-span-2">
+        <div class="relative">
+          <div class="h-48 w-48 overflow-hidden rounded-2xl border-2 border-primary-200 bg-primary-50 p-0.5 shadow-lg dark:border-primary-800 dark:bg-primary-900/30">
+            <div class="flex h-full w-full items-center justify-center rounded-[14px] bg-white dark:bg-gray-900">
+              <img src="/logos.svg" alt="Logo" class="h-28 w-28 object-contain" />
+            </div>
+          </div>
+          <div class="animate-float absolute -bottom-3 -right-3 rounded-lg bg-accent-600 px-3 py-1.5 text-xs font-bold text-white shadow-md dark:bg-accent-500">
+            Open to work
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-5 text-lg leading-relaxed text-gray-600 dark:text-gray-400 md:col-span-3">
+        <p>
+          I'm an SDET with a passion for building reliable, well-tested software. Quality isn't just a phase — it's a mindset embedded in every line of code.
+        </p>
+        <p>
+          My journey started with a curiosity for how things work <em>(and how they break)</em>. That led me to specialize in test automation, quality engineering, and building tools that help teams ship with confidence.
+        </p>
+        <p>
+          I also enjoy exploring new technologies, AI, and continuously improving my engineering practices to build better software.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 dot-grid opacity-40"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-gray-50/80 via-transparent to-gray-50/80 dark:from-gray-950/80 dark:via-transparent dark:to-gray-950/80"></div>
+
+    <div class="relative mx-auto max-w-4xl px-6 py-20">
+      <div class="mb-10">
+        <p class="mb-2 font-mono text-sm text-accent-600 dark:text-accent-400">skills.map()</p>
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Technical Skills</h2>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {skillCategories.map((category) => (
+          <div class="group rounded-2xl border border-gray-200/60 bg-white/80 p-5 backdrop-blur-sm transition-all hover-lift dark:border-gray-800/60 dark:bg-gray-900/60">
+            <div class="mb-3 flex items-center gap-3">
+              <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-800 font-mono text-xs font-bold text-white dark:bg-primary-700">
+                {category.icon}
+              </div>
+              <h3 class="font-semibold text-gray-900 dark:text-white">{category.title}</h3>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              {category.skills.map((skill) => (
+                <span class="rounded-md border border-gray-200 bg-gray-50 px-2 py-0.5 text-xs font-medium text-gray-600 transition-colors group-hover:border-accent-300/50 group-hover:text-accent-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:group-hover:border-accent-600/30 dark:group-hover:text-accent-300">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach -->
+  <section class="mx-auto max-w-4xl px-6 py-20">
+    <div class="mb-10">
+      <p class="mb-2 font-mono text-sm text-accent-600 dark:text-accent-400">approach()</p>
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white">How I Work</h2>
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-2">
+      {approaches.map((item) => (
+        <div class="group relative overflow-hidden rounded-2xl border border-gray-200/60 bg-white/80 p-6 backdrop-blur-sm transition-all hover-lift dark:border-gray-800/60 dark:bg-gray-900/60">
+          <span class="absolute right-4 top-4 font-mono text-4xl font-bold text-gray-100 dark:text-gray-800">{item.num}</span>
+          <div class="relative">
+            <h3 class="mb-2 text-lg font-bold text-gray-900 dark:text-white">{item.title}</h3>
+            <p class="text-sm leading-relaxed text-gray-500 dark:text-gray-400">{item.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Resume CTA -->
+  <section class="mx-auto max-w-4xl px-6 pb-20">
+    <div class="relative overflow-hidden rounded-2xl bg-primary-800 p-8 text-center text-white shadow-xl md:p-12 dark:bg-primary-900">
+      <div class="pointer-events-none absolute inset-0">
+        <div class="animate-blob absolute -left-10 -top-10 h-40 w-40 rounded-full bg-white/5 blur-2xl"></div>
+        <div class="animate-blob-delay-2 absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-accent-500/10 blur-2xl"></div>
+      </div>
+      <div class="relative">
+        <h2 class="mb-3 text-2xl font-bold md:text-3xl">Want the full picture?</h2>
+        <p class="mb-6 text-primary-200">Download my resume for a detailed overview of my experience.</p>
+        <a href="/resume.pdf" class="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-7 py-3 font-medium backdrop-blur-sm transition-all hover:bg-white/20 hover:shadow-lg">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          Download Resume
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
